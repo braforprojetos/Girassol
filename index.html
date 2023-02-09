@@ -37,8 +37,8 @@
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
-        <script src="data/PermetrodosImveis_3.js"></script>
-        <script src="data/readosTalhes_4.js"></script>
+        <script src="data/PermetrodosImveis_4.js"></script>
+        <script src="data/readosTalhes2023712ha_5.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -57,7 +57,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-16.308555581223054,-55.468237004981205],[-16.116251500069282,-55.03397483484832]]);
+        }).fitBounds([[-16.31131705941248,-55.448143963678994],[-16.11901297825871,-55.01388179354611]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -97,16 +97,25 @@
                                               {pane: 'pane_15102022CBERS4A_1'});
         bounds_group.addLayer(layer_15102022CBERS4A_1);
         map.addLayer(layer_15102022CBERS4A_1);
-        map.createPane('pane_Logos_2');
-        map.getPane('pane_Logos_2').style.zIndex = 402;
-        var img_Logos_2 = 'data/Logos_2.png';
-        var img_bounds_Logos_2 = [[-16.267644873235756,-55.39637469200136],[-16.18904393020707,-55.33514869427367]];
-        var layer_Logos_2 = new L.imageOverlay(img_Logos_2,
-                                              img_bounds_Logos_2,
-                                              {pane: 'pane_Logos_2'});
-        bounds_group.addLayer(layer_Logos_2);
-        map.addLayer(layer_Logos_2);
-        function pop_PermetrodosImveis_3(feature, layer) {
+        map.createPane('pane_Tabela_2');
+        map.getPane('pane_Tabela_2').style.zIndex = 402;
+        var img_Tabela_2 = 'data/Tabela_2.png';
+        var img_bounds_Tabela_2 = [[-16.275013210315493,-55.14357254560835],[-16.18020259387542,-55.109900958449046]];
+        var layer_Tabela_2 = new L.imageOverlay(img_Tabela_2,
+                                              img_bounds_Tabela_2,
+                                              {pane: 'pane_Tabela_2'});
+        bounds_group.addLayer(layer_Tabela_2);
+        map.addLayer(layer_Tabela_2);
+        map.createPane('pane_Logos_3');
+        map.getPane('pane_Logos_3').style.zIndex = 403;
+        var img_Logos_3 = 'data/Logos_3.png';
+        var img_bounds_Logos_3 = [[-16.267644873235756,-55.39637469200136],[-16.18904393020707,-55.33514869427367]];
+        var layer_Logos_3 = new L.imageOverlay(img_Logos_3,
+                                              img_bounds_Logos_3,
+                                              {pane: 'pane_Logos_3'});
+        bounds_group.addLayer(layer_Logos_3);
+        map.addLayer(layer_Logos_3);
+        function pop_PermetrodosImveis_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -128,9 +137,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_PermetrodosImveis_3_0() {
+        function style_PermetrodosImveis_4_0() {
             return {
-                pane: 'pane_PermetrodosImveis_3',
+                pane: 'pane_PermetrodosImveis_4',
                 opacity: 1,
                 color: 'rgba(76,175,255,1.0)',
                 dashArray: '',
@@ -141,21 +150,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_PermetrodosImveis_3');
-        map.getPane('pane_PermetrodosImveis_3').style.zIndex = 403;
-        map.getPane('pane_PermetrodosImveis_3').style['mix-blend-mode'] = 'normal';
-        var layer_PermetrodosImveis_3 = new L.geoJson(json_PermetrodosImveis_3, {
+        map.createPane('pane_PermetrodosImveis_4');
+        map.getPane('pane_PermetrodosImveis_4').style.zIndex = 404;
+        map.getPane('pane_PermetrodosImveis_4').style['mix-blend-mode'] = 'normal';
+        var layer_PermetrodosImveis_4 = new L.geoJson(json_PermetrodosImveis_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_PermetrodosImveis_3',
-            layerName: 'layer_PermetrodosImveis_3',
-            pane: 'pane_PermetrodosImveis_3',
-            onEachFeature: pop_PermetrodosImveis_3,
-            style: style_PermetrodosImveis_3_0,
+            dataVar: 'json_PermetrodosImveis_4',
+            layerName: 'layer_PermetrodosImveis_4',
+            pane: 'pane_PermetrodosImveis_4',
+            onEachFeature: pop_PermetrodosImveis_4,
+            style: style_PermetrodosImveis_4_0,
         });
-        bounds_group.addLayer(layer_PermetrodosImveis_3);
-        map.addLayer(layer_PermetrodosImveis_3);
-        function pop_readosTalhes_4(feature, layer) {
+        bounds_group.addLayer(layer_PermetrodosImveis_4);
+        map.addLayer(layer_PermetrodosImveis_4);
+        function pop_readosTalhes2023712ha_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -197,9 +206,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_readosTalhes_4_0() {
+        function style_readosTalhes2023712ha_5_0() {
             return {
-                pane: 'pane_readosTalhes_4',
+                pane: 'pane_readosTalhes2023712ha_5',
                 opacity: 1,
                 color: 'rgba(255,52,52,1.0)',
                 dashArray: '',
@@ -210,20 +219,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_readosTalhes_4');
-        map.getPane('pane_readosTalhes_4').style.zIndex = 404;
-        map.getPane('pane_readosTalhes_4').style['mix-blend-mode'] = 'normal';
-        var layer_readosTalhes_4 = new L.geoJson(json_readosTalhes_4, {
+        map.createPane('pane_readosTalhes2023712ha_5');
+        map.getPane('pane_readosTalhes2023712ha_5').style.zIndex = 405;
+        map.getPane('pane_readosTalhes2023712ha_5').style['mix-blend-mode'] = 'normal';
+        var layer_readosTalhes2023712ha_5 = new L.geoJson(json_readosTalhes2023712ha_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_readosTalhes_4',
-            layerName: 'layer_readosTalhes_4',
-            pane: 'pane_readosTalhes_4',
-            onEachFeature: pop_readosTalhes_4,
-            style: style_readosTalhes_4_0,
+            dataVar: 'json_readosTalhes2023712ha_5',
+            layerName: 'layer_readosTalhes2023712ha_5',
+            pane: 'pane_readosTalhes2023712ha_5',
+            onEachFeature: pop_readosTalhes2023712ha_5,
+            style: style_readosTalhes2023712ha_5_0,
         });
-        bounds_group.addLayer(layer_readosTalhes_4);
-        map.addLayer(layer_readosTalhes_4);
+        bounds_group.addLayer(layer_readosTalhes2023712ha_5);
+        map.addLayer(layer_readosTalhes2023712ha_5);
             var title = new L.Control();
             title.onAdd = function (map) {
                 this._div = L.DomUtil.create('div', 'info');
@@ -252,11 +261,11 @@
                 abstract.show = function () {
                     this._div.classList.remove("abstract");
                     this._div.classList.add("abstractUncollapsed");
-                    this._div.innerHTML = 'Inventário Florestal de Acompanhamento para determinação de estoque volumétrico de madeira de Eucalipto realizado pela empresa BRAFOR - Projetos Ambientais e Florestais em janeiro de 2023, para a empresa Girassol Agrícola LTDA na sua unidade Fazenda Girassol do Prata.';
+                    this._div.innerHTML = 'Inventário Florestal de Acompanhamento para determinação de estoque volumétrico de madeira de Eucalipto realizado pela empresa BRAFOR - Projetos Ambientais e Florestais em janeiro de 2023, para a empresa Girassol Agrícola LTDA na sua unidade Fazenda Girassol do Prata.<br /><br />Data da Imagem de Satélite: 15/10/2022<br />Área Levantada: 2.023,712 ha<br />Volume Total: 809.806,596 m³<br /><br />';
             };
             abstract.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/readosTalhes_4.png" /> Área dos Talhões': layer_readosTalhes_4,'<img src="legend/PermetrodosImveis_3.png" /> Perímetro dos Imóveis': layer_PermetrodosImveis_3,"Logos": layer_Logos_2,"15/10/2022 - CBERS 4A": layer_15102022CBERS4A_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/readosTalhes2023712ha_5.png" /> Área dos Talhões - 2.023,712 ha': layer_readosTalhes2023712ha_5,'<img src="legend/PermetrodosImveis_4.png" /> Perímetro dos Imóveis': layer_PermetrodosImveis_4,"Logos": layer_Logos_3,"Tabela": layer_Tabela_2,"15/10/2022 - CBERS 4A": layer_15102022CBERS4A_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
