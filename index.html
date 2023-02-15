@@ -57,7 +57,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-16.310896262735994,-55.36840299348502],[-16.118592181582194,-55.0881524069457]]);
+        }).fitBounds([[-16.318891399589216,-55.43362647834024],[-16.12658731843546,-55.05890703792998]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -290,7 +290,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Idade": "real","Área (ha)": "real","Volume (m³/ha)": "real","Estoque Volumétrico (m³)": "real","Talhão": "str","Clone": "str"};
+        var Filters = {"Idade": "real","Área (ha)": "real","Volume (m³/ha)": "real","Estoque Volumétrico (m³)": "real","Clone": "str","Talhão": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -510,6 +510,47 @@
             });
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
+            var div_Clone = document.createElement('div');
+            div_Clone.id = "div_Clone";
+            div_Clone.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Clone);
+            sel_Clone = document.createElement('select');
+            sel_Clone.multiple = true;
+            sel_Clone.size = 10;
+            sel_Clone.id = "sel_Clone";
+            var Clone_options_str = "<option value='' unselected></option>";
+            sel_Clone.onchange = function(){filterFunc()};
+            Clone_options_str  += '<option value="0">0</option>';
+            Clone_options_str  += '<option value="105">105</option>';
+            Clone_options_str  += '<option value="433">433</option>';
+            Clone_options_str  += '<option value="608">608</option>';
+            Clone_options_str  += '<option value="GG100">GG100</option>';
+            Clone_options_str  += '<option value="H13">H13</option>';
+            Clone_options_str  += '<option value="H15">H15</option>';
+            Clone_options_str  += '<option value="HC1528">HC1528</option>';
+            Clone_options_str  += '<option value="HC1528 (REBROTA)">HC1528 (REBROTA)</option>';
+            Clone_options_str  += '<option value="I144">I144</option>';
+            Clone_options_str  += '<option value="I144 (REBROTA)">I144 (REBROTA)</option>';
+            Clone_options_str  += '<option value="VM-01">VM-01</option>';
+            sel_Clone.innerHTML = Clone_options_str;
+            div_Clone.appendChild(sel_Clone);
+            var lab_Clone = document.createElement('div');
+            lab_Clone.innerHTML = 'Clone';
+            lab_Clone.className = 'filterlabel';
+            div_Clone.appendChild(lab_Clone);
+            var reset_Clone = document.createElement('div');
+            reset_Clone.innerHTML = 'clear filter';
+            reset_Clone.className = 'filterlabel';
+            reset_Clone.onclick = function() {
+                var options = document.getElementById("sel_Clone").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Clone.appendChild(reset_Clone);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
             var div_Talho = document.createElement('div');
             div_Talho.id = "div_Talho";
             div_Talho.className= "filterselect";
@@ -554,47 +595,6 @@
                 filterFunc();
             };
             div_Talho.appendChild(reset_Talho);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Clone = document.createElement('div');
-            div_Clone.id = "div_Clone";
-            div_Clone.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Clone);
-            sel_Clone = document.createElement('select');
-            sel_Clone.multiple = true;
-            sel_Clone.size = 10;
-            sel_Clone.id = "sel_Clone";
-            var Clone_options_str = "<option value='' unselected></option>";
-            sel_Clone.onchange = function(){filterFunc()};
-            Clone_options_str  += '<option value="0">0</option>';
-            Clone_options_str  += '<option value="105">105</option>';
-            Clone_options_str  += '<option value="433">433</option>';
-            Clone_options_str  += '<option value="608">608</option>';
-            Clone_options_str  += '<option value="GG100">GG100</option>';
-            Clone_options_str  += '<option value="H13">H13</option>';
-            Clone_options_str  += '<option value="H15">H15</option>';
-            Clone_options_str  += '<option value="HC1528">HC1528</option>';
-            Clone_options_str  += '<option value="HC1528 (REBROTA)">HC1528 (REBROTA)</option>';
-            Clone_options_str  += '<option value="I144">I144</option>';
-            Clone_options_str  += '<option value="I144 (REBROTA)">I144 (REBROTA)</option>';
-            Clone_options_str  += '<option value="VM-01">VM-01</option>';
-            sel_Clone.innerHTML = Clone_options_str;
-            div_Clone.appendChild(sel_Clone);
-            var lab_Clone = document.createElement('div');
-            lab_Clone.innerHTML = 'Clone';
-            lab_Clone.className = 'filterlabel';
-            div_Clone.appendChild(lab_Clone);
-            var reset_Clone = document.createElement('div');
-            reset_Clone.innerHTML = 'clear filter';
-            reset_Clone.className = 'filterlabel';
-            reset_Clone.onclick = function() {
-                var options = document.getElementById("sel_Clone").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Clone.appendChild(reset_Clone);
         L.ImageOverlay.include({
             getBounds: function () {
                 return this._bounds;
