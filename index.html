@@ -57,7 +57,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-16.31131705941248,-55.448143963678994],[-16.11901297825871,-55.01388179354611]]);
+        }).fitBounds([[-16.310896262735994,-55.36840299348502],[-16.118592181582194,-55.0881524069457]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -100,7 +100,7 @@
         map.createPane('pane_Tabela_2');
         map.getPane('pane_Tabela_2').style.zIndex = 402;
         var img_Tabela_2 = 'data/Tabela_2.png';
-        var img_bounds_Tabela_2 = [[-16.275013210315493,-55.14357254560835],[-16.18020259387542,-55.109900958449046]];
+        var img_bounds_Tabela_2 = [[-16.27501317915,-55.14357254555],[-16.180202593850076,-55.109393357749966]];
         var layer_Tabela_2 = new L.imageOverlay(img_Tabela_2,
                                               img_bounds_Tabela_2,
                                               {pane: 'pane_Tabela_2'});
@@ -183,24 +183,28 @@
                         <td>' + (feature.properties['Clone'] !== null ? autolinker.link(feature.properties['Clone'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">m³/ha</th>\
-                        <td>' + (feature.properties['m³/ha'] !== null ? autolinker.link(feature.properties['m³/ha'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Volume m³</th>\
-                        <td>' + (feature.properties['Volume m³'] !== null ? autolinker.link(feature.properties['Volume m³'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Idade</th>\
+                        <td>' + (feature.properties['Idade'] !== null ? autolinker.link(feature.properties['Idade'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Talhão</th>\
                         <td>' + (feature.properties['Talhão'] !== null ? autolinker.link(feature.properties['Talhão'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Idade</th>\
-                        <td>' + (feature.properties['Idade'] !== null ? autolinker.link(feature.properties['Idade'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Área (ha)</th>\
                         <td>' + (feature.properties['Área (ha)'] !== null ? autolinker.link(feature.properties['Área (ha)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Volume (m³/ha)</th>\
+                        <td>' + (feature.properties['Volume (m³/ha)'] !== null ? autolinker.link(feature.properties['Volume (m³/ha)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Estoque Volumétrico (m³)</th>\
+                        <td>' + (feature.properties['Estoque Volumétrico (m³)'] !== null ? autolinker.link(feature.properties['Estoque Volumétrico (m³)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data do Levantamento</th>\
+                        <td>' + (feature.properties['Data do Levantamento'] !== null ? autolinker.link(feature.properties['Data do Levantamento'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -210,7 +214,7 @@
             return {
                 pane: 'pane_readosTalhes2023712ha_5',
                 opacity: 1,
-                color: 'rgba(255,52,52,1.0)',
+                color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -286,7 +290,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Idade": "real","Área (ha)": "real","m³/ha": "real","Volume m³": "real","Clone": "str","Talhão": "str"};
+        var Filters = {"Idade": "real","Área (ha)": "real","Volume (m³/ha)": "real","Estoque Volumétrico (m³)": "real","Talhão": "str","Clone": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -442,24 +446,24 @@
             });
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_mha = document.createElement("div");
-            div_mha.id = "div_mha";
-            div_mha.className = "slider";
-            document.getElementById("menu").appendChild(div_mha);
-            var lab_mha = document.createElement('div');
-            lab_mha.innerHTML  = 'm³/ha: <span id="val_mha"></span>';
-            lab_mha.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_mha);
-            var reset_mha = document.createElement('div');
-            reset_mha.innerHTML = 'clear filter';
-            reset_mha.className = 'filterlabel';
-            lab_mha.className = 'filterlabel';
-            reset_mha.onclick = function() {
-                sel_mha.noUiSlider.reset();
+            var div_Volumemha = document.createElement("div");
+            div_Volumemha.id = "div_Volumemha";
+            div_Volumemha.className = "slider";
+            document.getElementById("menu").appendChild(div_Volumemha);
+            var lab_Volumemha = document.createElement('div');
+            lab_Volumemha.innerHTML  = 'Volume (m³/ha): <span id="val_Volumemha"></span>';
+            lab_Volumemha.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_Volumemha);
+            var reset_Volumemha = document.createElement('div');
+            reset_Volumemha.innerHTML = 'clear filter';
+            reset_Volumemha.className = 'filterlabel';
+            lab_Volumemha.className = 'filterlabel';
+            reset_Volumemha.onclick = function() {
+                sel_Volumemha.noUiSlider.reset();
             };
-            document.getElementById("menu").appendChild(reset_mha);
-            var sel_mha = document.getElementById('div_mha');
-            noUiSlider.create(sel_mha, {
+            document.getElementById("menu").appendChild(reset_Volumemha);
+            var sel_Volumemha = document.getElementById('div_Volumemha');
+            noUiSlider.create(sel_Volumemha, {
                 connect: true,
                 start: [55.0, 873.0],
                 range: {
@@ -467,31 +471,31 @@
                 max: 873.0
                 }
             });
-            sel_mha.noUiSlider.on('update', function (values) {
-            val_mha = document.getElementById('val_mha');
-            val_mha.innerHTML = values.join(' - ');
+            sel_Volumemha.noUiSlider.on('update', function (values) {
+            val_Volumemha = document.getElementById('val_Volumemha');
+            val_Volumemha.innerHTML = values.join(' - ');
                 filterFunc()
             });
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_Volumem = document.createElement("div");
-            div_Volumem.id = "div_Volumem";
-            div_Volumem.className = "slider";
-            document.getElementById("menu").appendChild(div_Volumem);
-            var lab_Volumem = document.createElement('div');
-            lab_Volumem.innerHTML  = 'Volume m³: <span id="val_Volumem"></span>';
-            lab_Volumem.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_Volumem);
-            var reset_Volumem = document.createElement('div');
-            reset_Volumem.innerHTML = 'clear filter';
-            reset_Volumem.className = 'filterlabel';
-            lab_Volumem.className = 'filterlabel';
-            reset_Volumem.onclick = function() {
-                sel_Volumem.noUiSlider.reset();
+            var div_EstoqueVolumtricom = document.createElement("div");
+            div_EstoqueVolumtricom.id = "div_EstoqueVolumtricom";
+            div_EstoqueVolumtricom.className = "slider";
+            document.getElementById("menu").appendChild(div_EstoqueVolumtricom);
+            var lab_EstoqueVolumtricom = document.createElement('div');
+            lab_EstoqueVolumtricom.innerHTML  = 'Estoque Volumétrico (m³): <span id="val_EstoqueVolumtricom"></span>';
+            lab_EstoqueVolumtricom.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_EstoqueVolumtricom);
+            var reset_EstoqueVolumtricom = document.createElement('div');
+            reset_EstoqueVolumtricom.innerHTML = 'clear filter';
+            reset_EstoqueVolumtricom.className = 'filterlabel';
+            lab_EstoqueVolumtricom.className = 'filterlabel';
+            reset_EstoqueVolumtricom.onclick = function() {
+                sel_EstoqueVolumtricom.noUiSlider.reset();
             };
-            document.getElementById("menu").appendChild(reset_Volumem);
-            var sel_Volumem = document.getElementById('div_Volumem');
-            noUiSlider.create(sel_Volumem, {
+            document.getElementById("menu").appendChild(reset_EstoqueVolumtricom);
+            var sel_EstoqueVolumtricom = document.getElementById('div_EstoqueVolumtricom');
+            noUiSlider.create(sel_EstoqueVolumtricom, {
                 connect: true,
                 start: [585.0, 52780.0],
                 range: {
@@ -499,52 +503,11 @@
                 max: 52780.0
                 }
             });
-            sel_Volumem.noUiSlider.on('update', function (values) {
-            val_Volumem = document.getElementById('val_Volumem');
-            val_Volumem.innerHTML = values.join(' - ');
+            sel_EstoqueVolumtricom.noUiSlider.on('update', function (values) {
+            val_EstoqueVolumtricom = document.getElementById('val_EstoqueVolumtricom');
+            val_EstoqueVolumtricom.innerHTML = values.join(' - ');
                 filterFunc()
             });
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Clone = document.createElement('div');
-            div_Clone.id = "div_Clone";
-            div_Clone.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Clone);
-            sel_Clone = document.createElement('select');
-            sel_Clone.multiple = true;
-            sel_Clone.size = 10;
-            sel_Clone.id = "sel_Clone";
-            var Clone_options_str = "<option value='' unselected></option>";
-            sel_Clone.onchange = function(){filterFunc()};
-            Clone_options_str  += '<option value="0">0</option>';
-            Clone_options_str  += '<option value="105">105</option>';
-            Clone_options_str  += '<option value="433">433</option>';
-            Clone_options_str  += '<option value="608">608</option>';
-            Clone_options_str  += '<option value="GG100">GG100</option>';
-            Clone_options_str  += '<option value="H13">H13</option>';
-            Clone_options_str  += '<option value="H15">H15</option>';
-            Clone_options_str  += '<option value="HC1528">HC1528</option>';
-            Clone_options_str  += '<option value="HC1528 (REBROTA)">HC1528 (REBROTA)</option>';
-            Clone_options_str  += '<option value="I144">I144</option>';
-            Clone_options_str  += '<option value="I144 (REBROTA)">I144 (REBROTA)</option>';
-            Clone_options_str  += '<option value="VM-01">VM-01</option>';
-            sel_Clone.innerHTML = Clone_options_str;
-            div_Clone.appendChild(sel_Clone);
-            var lab_Clone = document.createElement('div');
-            lab_Clone.innerHTML = 'Clone';
-            lab_Clone.className = 'filterlabel';
-            div_Clone.appendChild(lab_Clone);
-            var reset_Clone = document.createElement('div');
-            reset_Clone.innerHTML = 'clear filter';
-            reset_Clone.className = 'filterlabel';
-            reset_Clone.onclick = function() {
-                var options = document.getElementById("sel_Clone").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Clone.appendChild(reset_Clone);
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
             var div_Talho = document.createElement('div');
@@ -591,6 +554,47 @@
                 filterFunc();
             };
             div_Talho.appendChild(reset_Talho);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Clone = document.createElement('div');
+            div_Clone.id = "div_Clone";
+            div_Clone.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Clone);
+            sel_Clone = document.createElement('select');
+            sel_Clone.multiple = true;
+            sel_Clone.size = 10;
+            sel_Clone.id = "sel_Clone";
+            var Clone_options_str = "<option value='' unselected></option>";
+            sel_Clone.onchange = function(){filterFunc()};
+            Clone_options_str  += '<option value="0">0</option>';
+            Clone_options_str  += '<option value="105">105</option>';
+            Clone_options_str  += '<option value="433">433</option>';
+            Clone_options_str  += '<option value="608">608</option>';
+            Clone_options_str  += '<option value="GG100">GG100</option>';
+            Clone_options_str  += '<option value="H13">H13</option>';
+            Clone_options_str  += '<option value="H15">H15</option>';
+            Clone_options_str  += '<option value="HC1528">HC1528</option>';
+            Clone_options_str  += '<option value="HC1528 (REBROTA)">HC1528 (REBROTA)</option>';
+            Clone_options_str  += '<option value="I144">I144</option>';
+            Clone_options_str  += '<option value="I144 (REBROTA)">I144 (REBROTA)</option>';
+            Clone_options_str  += '<option value="VM-01">VM-01</option>';
+            sel_Clone.innerHTML = Clone_options_str;
+            div_Clone.appendChild(sel_Clone);
+            var lab_Clone = document.createElement('div');
+            lab_Clone.innerHTML = 'Clone';
+            lab_Clone.className = 'filterlabel';
+            div_Clone.appendChild(lab_Clone);
+            var reset_Clone = document.createElement('div');
+            reset_Clone.innerHTML = 'clear filter';
+            reset_Clone.className = 'filterlabel';
+            reset_Clone.onclick = function() {
+                var options = document.getElementById("sel_Clone").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Clone.appendChild(reset_Clone);
         L.ImageOverlay.include({
             getBounds: function () {
                 return this._bounds;
